@@ -14,7 +14,7 @@ class Stack<T> where T : struct
         top = -1;
     }
 
-    public void Push(T item = default(T))
+    public int Push(T item = default(T))
     {
         if (!typeof(T).IsValueType)
         {
@@ -23,10 +23,30 @@ class Stack<T> where T : struct
 
         if (top == stackArray.Length - 1)
         {
-            Array.Resize(ref stackArray, stackArray.Length * 2);
+            
+            if (stackArray.Length >= int.MaxValue / 2)
+            {
+               
+                return -2;
+            }
+            Console.WriteLine("Stack capacity exceeded");
+            Environment.Exit(0);
         }
 
-        stackArray[++top] = item;
+        if (top == stackArray.Length - 1)
+        {
+            
+            return -1;
+        }
+        else
+        {
+            if (EqualityComparer<T>.Default.Equals(item, default))
+            {
+                item = default(T);
+            }
+            stackArray[++top] = item;
+        }
+        return 0;
     }
 
     public T Pop()

@@ -33,6 +33,7 @@ class Program
                         Console.WriteLine("Invalid input. Please enter a value type.");
                         continue;
                     }
+                    
                     valueStack.Push(value);
                     Console.WriteLine("Value {0} pushed onto the stack.", value);
                     break;
@@ -62,6 +63,7 @@ class Program
                     break;
                 case 5:
                     Console.WriteLine("Exiting program.");
+                    Environment.Exit(0);
                     return;
                 default:
                     Console.WriteLine("Invalid choice. Please enter a valid option (1-5).");
